@@ -16,6 +16,7 @@ Data/Input/*-invoice.xml
 Data/Input/PrivateKey.pem
 Data/Input/PublicKey.pem
 Data/Input/PublicKey.bin
+Data/Certificates
 generated-*.csr
 generated-*.key
 generated-*.json
