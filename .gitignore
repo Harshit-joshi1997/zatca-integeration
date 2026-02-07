@@ -1,0 +1,48 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Generated files
+Data/Output/
+Data/Input/my-invoice.xml
+Data/Input/*-invoice.xml
+*.pdf
+*.class
+
+# Generated keys and certificates (keep templates only)
+Data/Input/PrivateKey.pem
+Data/Input/PublicKey.pem
+Data/Input/PublicKey.bin
+generated-*.csr
+generated-*.key
+generated-*.json
+
+# Signed invoices
+*_signed.xml
+
+# SDK output
+sdk_output.txt
+sdk_help*.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local

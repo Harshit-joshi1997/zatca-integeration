@@ -1,0 +1,32 @@
+{
+    "name": "zatca-nodejs",
+    "version": "1.0.0",
+    "description": "ZATCA E-Invoicing Integration with Node.js",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "sign": "node src/sign-invoice.js",
+        "validate": "node src/validate-invoice.js",
+        "generate-csr": "node src/generate-csr.js",
+        "generate-qr": "node src/generate-qr.js",
+        "decode-cleared": "node src/decode-cleared-invoice.js",
+        "generate-pdf": "node src/generate-pdf.js"
+    },
+    "dependencies": {
+        "node-forge": "^1.3.1",
+        "qrcode": "^1.5.3",
+        "pdfkit": "^0.13.0",
+        "xml2js": "^0.6.2",
+        "axios": "^1.6.0",
+        "uuid": "^9.0.1"
+    },
+    "devDependencies": {},
+    "keywords": [
+        "zatca",
+        "e-invoicing",
+        "saudi-arabia",
+        "tax"
+    ],
+    "author": "",
+    "license": "MIT"
+}
