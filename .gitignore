@@ -16,6 +16,7 @@ Data/Input/*-invoice.xml
 Data/Input/PrivateKey.pem
 Data/Input/PublicKey.pem
 Data/Input/PublicKey.bin
+Data/Certificates
 generated-*.csr
 generated-*.key
 generated-*.json
@@ -24,6 +25,7 @@ generated-*.json
 *_signed.xml
 
 # SDK output
+Apps/global.json
 sdk_output.txt
 sdk_help*.txt
 
