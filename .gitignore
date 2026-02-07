@@ -25,6 +25,7 @@ generated-*.json
 *_signed.xml
 
 # SDK output
+Apps/global.json
 sdk_output.txt
 sdk_help*.txt
 
