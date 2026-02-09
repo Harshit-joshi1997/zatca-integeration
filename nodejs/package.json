@@ -9,8 +9,11 @@
         "validate": "node src/validate-invoice.js",
         "generate-csr": "node src/generate-csr.js",
         "generate-qr": "node src/generate-qr.js",
+        "encode": "node src/encode-invoice.js",
+        "complete:simplified": "node src/complete-simplified.js",
+        "complete:standard": "node src/complete-standard.js",
         "decode-cleared": "node src/decode-cleared-invoice.js",
-        "generate-pdf": "node src/generate-pdf.js"
+        "pdf": "node src/generate-pdf.js"
     },
     "dependencies": {
         "node-forge": "^1.3.1",
