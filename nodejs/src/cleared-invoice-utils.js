@@ -2,6 +2,20 @@ const fs = require('fs').promises;
 const xml2js = require('xml2js');
 
 /**
+ * Encode an invoice XML file to Base64 string
+ */
+async function encodeInvoiceToBase64(xmlPath) {
+    try {
+        const xmlContent = await fs.readFile(xmlPath, 'utf8');
+        const base64String = Buffer.from(xmlContent).toString('base64');
+        return base64String;
+    } catch (error) {
+        console.error('Error encoding invoice to Base64:', error.message);
+        throw error;
+    }
+}
+
+/**
  * Decode cleared invoice from ZATCA response
  */
 async function decodeClearedInvoice(base64String, outputPath) {
@@ -77,6 +91,7 @@ async function parseInvoiceData(xmlPath) {
 }
 
 module.exports = {
+    encodeInvoiceToBase64,
     decodeClearedInvoice,
     extractQRCode,
     parseInvoiceData
