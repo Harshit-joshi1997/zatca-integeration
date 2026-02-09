@@ -5,8 +5,9 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 
+
 # Generated files
-Data/Output/
+Output/
 Data/Input/my-invoice.xml
 Data/Input/*-invoice.xml
 *.pdf
