@@ -26,8 +26,14 @@ async function main() {
         console.log('Using sample invoice:', sampleInvoicePath);
 
         // Validate the sample (already signed)
-        console.log('\n1. Validating sample invoice...');
-        await zatca.signAndValidate(sampleInvoicePath);
+        console.log(`\n[${new Date().toISOString()}] 1. Validating sample invoice...`);
+        const result = await zatca.validate(sampleInvoicePath);
+
+        if (result.includes('GLOBAL VALIDATION RESULT = PASSED')) {
+            console.log(`[${new Date().toISOString()}] ✅ Sample invoice validation PASSED`);
+        } else {
+            console.log(`[${new Date().toISOString()}] ❌ Sample invoice validation FAILED`);
+        }
 
         // Generate QR code (should work with sample)
         console.log('\n2. Generating QR code...');

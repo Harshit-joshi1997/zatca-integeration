@@ -16,8 +16,15 @@ class ZatcaService {
      * Execute ZATCA SDK command
      */
     async executeCommand(args) {
+        // Normalize paths in args for Windows
+        const normalizedArgs = args.map(arg =>
+            (typeof arg === 'string' && (arg.includes('/') || arg.includes('\\')))
+                ? path.normalize(arg)
+                : arg
+        );
+
         return new Promise((resolve, reject) => {
-            execFile('cmd.exe', ['/c', this.sdkPath, ...args], {
+            execFile('cmd.exe', ['/c', this.sdkPath, ...normalizedArgs], {
                 env: {
                     ...process.env,
                     SDK_CONFIG: this.configPath,
@@ -41,6 +48,38 @@ class ZatcaService {
         const result = await this.executeCommand(['-sign', '-invoice', invoicePath, '-validate']);
         console.log(result);
         return result;
+    }
+
+    /**
+     * Standalone validation of an invoice
+     * Returns true if PASSED, throws error if FAILED
+     */
+    async validate(invoicePath) {
+        console.log(`Validating invoice: ${path.basename(invoicePath)}...`);
+        const result = await this.executeCommand(['-validate', '-invoice', invoicePath]);
+        console.log(result);
+
+        if (!result.includes('GLOBAL VALIDATION RESULT = PASSED')) {
+            throw new Error(`Validation FAILED for ${path.basename(invoicePath)}`);
+        }
+        return true;
+    }
+
+    /**
+     * Generate hash for an invoice
+     */
+    async generateHash(invoicePath) {
+        console.log(`Generating hash for: ${path.basename(invoicePath)}...`);
+        const result = await this.executeCommand(['-generateHash', '-invoice', invoicePath]);
+
+        // Extract hash from result: " *** INVOICE HASH = ..."
+        const match = result.match(/\*\*\* INVOICE HASH = (.*)/);
+        if (match && match[1]) {
+            const hash = match[1].trim();
+            console.log(`✓ Generated Hash: ${hash}`);
+            return hash;
+        }
+        throw new Error('Could not extract hash from SDK output');
     }
 
     /**
